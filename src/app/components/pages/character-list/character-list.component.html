@@ -1,0 +1,66 @@
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div id="filter">
+  <button (click)="filterByGender('male')" >Male</button>
+  <button (click)="filterByGender('female')" >Female</button>
+  <button (click)="loadCharacters()">Show All</button>
+  <div class="search">
+    <input [(ngModel)]="searchCharacter" placeholder="Search character... " />
+    <button (click)="searchCharacters()">Search</button>
+  </div>
+</div>
+
+<div id="speciesFilter">
+  <label id="speciesFilter"  style="color:aliceblue"><strong>Select a Species:</strong> </label>
+  <select id="speciesFilter" [(ngModel)]="selectedSpecies" (change)="filterBySpecies()">
+    <option value="alien">Alien</option>
+    <option value="human">Human</option>
+    <option value="humanoid">Humanoid</option>
+    <option value="animal">Animal</option>
+    <option value="robot">Robot</option>
+    <option value="mythological creature">Mythological Creature</option>
+    <option value="disease">Disease</option>
+    <option value="cronenberg">Cronenberg</option>
+  </select>
+</div>
+
+
+<div class="row">
+  <div *ngFor="let character of characters" class="col-md-3 mb-3">
+    <div class="card" style="width: 18rem;">
+      <img [src]="character.image" class="card-img-top img-container" alt="{{ character.name }}">
+      <div class="card-body">
+        <ul>
+          <li>Name: <strong>{{ character.name }}</strong></li>
+          <li>Status: <strong>{{ character.status }}</strong></li>
+          <li>Species: <strong>{{ character.species }}</strong></li>
+          <li>Gender: <strong>{{ character.gender }}</strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <div class="pagination">
+    <button (click)="getCharacters(currentPage - 1)" class="btn btn-info" [disabled]="currentPage === 1">Previous</button>
+    <span><strong style="color:aliceblue"><h2>{{currentPage}}</h2></strong></span>
+    <button (click)="getCharacters(currentPage + 1)" class="btn btn-info">Next</button>
+    <form>
+      <button (click)="resetPage()" class="btn btn btn-info rest"
+      style="width: auto;"
+      >Reload page
+      </button>
+    </form>
+  </div>
+</div>
+
