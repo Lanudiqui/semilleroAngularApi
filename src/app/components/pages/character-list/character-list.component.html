@@ -9,13 +9,16 @@
   <button (click)="filterByGender('male')" >Male</button>
   <button (click)="filterByGender('female')" >Female</button>
   <button (click)="loadCharacters()">Show All</button>
-  <div class="search">
-    <input [(ngModel)]="searchCharacter" placeholder="Search character... " />
-    <button (click)="searchCharacters()">Search</button>
-  </div>
+
+<div>
+  <input [(ngModel)]="searchCharacter" placeholder="Buscar personaje" />
+  <button (click)="searchCharacters()">Buscar</button>
 </div>
 
-<div id="speciesFilter">
+
+</div>
+<!----------------------------------------CHARACTER MENU------------------------------------------------------->
+<div  id="speciesFilter" >
   <label id="speciesFilter"  style="color:aliceblue"><strong>Select a Species:</strong> </label>
   <select id="speciesFilter" [(ngModel)]="selectedSpecies" (change)="filterBySpecies()">
     <option value="alien">Alien</option>
@@ -28,6 +31,51 @@
     <option value="cronenberg">Cronenberg</option>
   </select>
 </div>
+<label id="FilterS"  style="color:aliceblue"><strong>Select a Species:</strong> </label>
+<!----------------------------------------CAROUSEL--------------------------------------------------------------->
+
+<div>
+  <button id="newButton" *ngFor="let characterName of uniqueSearchedCharacters" (click)="searchCharacterByName(characterName)">{{ characterName }}</button>
+</div>
+
+<div *ngIf="characters.length > 0">
+  <!-- Aquí muestra los resultados de búsqueda -->
+  <div *ngFor="let character of characters">
+    <!-- <p>{{ character.name }}</p> -->
+  </div>
+</div>
+
+
+
+
+
+
+
+
+<carousel id="carousel" [itemsPerSlide]="1" [showIndicators]="true">
+  <slide>
+    <div class="image-container">
+      <img src="https://cdn.worlddata.info/pics/og/volcanoes.jpg" alt="Imagen 1" height="300">
+    </div>
+  </slide>
+  <slide>
+    <div class="image-container">
+      <img src="https://ichef.bbci.co.uk/news/976/cpsprodpb/123A/production/_118066640_gettyimages-1231998800.jpg" alt="Imagen 2" height="300">
+    </div>
+  </slide>
+  <slide>
+    <div class="image-container">
+      <img src="https://cdn.britannica.com/64/248964-138-C9CF1DD3/what-are-volcanoes-lava-flows.jpg?w=800&h=450&c=crop" alt="Imagen 3" height="300">
+    </div>
+  </slide>
+</carousel>
+
+
+
+
+
+
+<!------------------------------------------CHARACTER CARDS------------------------------------------------------------->
 
 
 <div class="row">
@@ -51,6 +99,7 @@
   <br>
   <br>
   <br>
+  <!-----------------------------------PAGINATION AND RESET--------------------------------------------------------->
   <div class="pagination">
     <button (click)="getCharacters(currentPage - 1)" class="btn btn-info" [disabled]="currentPage === 1">Previous</button>
     <span><strong style="color:aliceblue"><h2>{{currentPage}}</h2></strong></span>

@@ -9,6 +9,9 @@ import { CharacterDetailsComponent } from './components/pages/character-details/
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SpeciesFilterComponent } from './components/pages/species-filter/species-filter.component';
+import { CharacterService } from './services/character.service';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
 @NgModule({
   declarations: [
@@ -17,14 +20,18 @@ import { SpeciesFilterComponent } from './components/pages/species-filter/specie
     FormSearchComponent,
     CharacterListComponent,
     CharacterDetailsComponent,
-    SpeciesFilterComponent
+    SpeciesFilterComponent,
+
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    CarouselModule.forRoot(),
+    TooltipModule.forRoot(),
+
   ],
-  providers: [],
+  providers: [CharacterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
